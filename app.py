@@ -1,4 +1,4 @@
-﻿import streamlit as st
+import streamlit as st
 import os
 import json
 from decimal import Decimal
@@ -80,6 +80,10 @@ with col1:
 with col2:
     st.metric(label="Menor Preço - Volta", value=preco_volta)
 
+# Exibição da Data e Horário da Última Pesquisa logo abaixo dos preços
+st.markdown("---")
+st.metric(label="🕒 Última Atualização / Consulta", value=ultima_atualizacao)
+
 # Gráfico de Histórico de Preços corrigido com Pandas
 if historico and len(historico) > 0:
     st.markdown("---")
@@ -88,10 +92,6 @@ if historico and len(historico) > 0:
     if "preco" in df_hist.columns and "data" in df_hist.columns:
         df_hist["preco"] = pd.to_numeric(df_hist["preco"])
         st.line_chart(df_hist, x="data", y="preco")
-
-# Exibição da Data e Horário da Última Pesquisa
-st.markdown("---")
-st.metric(label="🕒 Última Atualização / Consulta", value=ultima_atualizacao)
 
 st.markdown("---")
 st.subheader("Detalhes dos Trechos Monitorados")
