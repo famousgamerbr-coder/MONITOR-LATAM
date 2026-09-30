@@ -1,12 +1,21 @@
 {
     "preco": 2532.22,
-    "preco_anterior": 2731.00,
+    "preco_anterior": 2532.22,
     "preco_ida": 1153.63,
     "preco_volta": 1378.59,
-    "ultima_consulta": "30/09/2026 13:32",
+    "ultima_consulta": "30/09/2026 18:53",
     "historico": [
-        {"data": "28/09", "preco": 2900.00},
-        {"data": "29/09", "preco": 2731.00},
-        {"data": "30/09", "preco": 2532.22}
+        {
+            "data": "28/09",
+            "preco": 2900.0
+        },
+        {
+            "data": "29/09",
+            "preco": 2731.0
+        },
+        {
+            "data": "30/09",
+            "preco": 2532.22
+        }
     ]
 }
