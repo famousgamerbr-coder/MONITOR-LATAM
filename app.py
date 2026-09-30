@@ -84,14 +84,21 @@ with col2:
 st.markdown("---")
 st.metric(label="🕒 Última Atualização / Consulta", value=ultima_atualizacao)
 
-# Gráfico de Histórico de Preços corrigido com Pandas
+# Histórico de Preços em Tabela (Mais legível no telemóvel)
 if historico and len(historico) > 0:
     st.markdown("---")
     st.subheader("📈 Histórico de Variação de Preços")
     df_hist = pd.DataFrame(historico)
     if "preco" in df_hist.columns and "data" in df_hist.columns:
         df_hist["preco"] = pd.to_numeric(df_hist["preco"])
-        st.line_chart(df_hist, x="data", y="preco")
+        df_hist["preco_formatado"] = df_hist["preco"].apply(lambda x: formatar_dinheiro(x))
+        
+        df_exibir = df_hist[["data", "preco_formatado"]].rename(columns={
+            "data": "Data / Hora",
+            "preco_formatado": "Preço Registado"
+        })
+        
+        st.dataframe(df_exibir, use_container_width=True, hide_index=True)
 
 st.markdown("---")
 st.subheader("Detalhes dos Trechos Monitorados")
