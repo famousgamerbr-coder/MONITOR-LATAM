@@ -94,7 +94,7 @@ if preco_anterior_val > 0:
     delta_str = f"{percentual:+.1f}% vs. anterior"
 
 # Alerta Visual de Super Promoção (abaixo de R$ 2.500,00)
-META_PROMOCAO = 2500.00
+META_PROMOCAO = 1750.00
 if preco_total > 0 and preco_total <= META_PROMOCAO:
     st.success(f"🔥 SUPER PROMOÇÃO DETECTADA! O preço geral está abaixo de R$ {META_PROMOCAO:,.2f}!".replace(",", "X").replace(".", ",").replace("X", "."))
 
