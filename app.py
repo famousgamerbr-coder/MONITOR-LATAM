@@ -51,7 +51,8 @@ with col_botao:
             response = requests.post(url, headers=headers, json=data)
             
             if response.status_code == 204:
-                st.success("Solicitação enviada! Atualiza em 1-2 min.")
+                # É ESTA LINHA QUE MUDA A MENSAGEM:
+                st.success("✅ Ordem enviada! O robô está a pesquisar. Aguarde 1 a 2 minutos e recarregue a página.")
                 st.rerun()
             else:
                 st.error("Erro ao solicitar. Verifique o token nos secrets.")
