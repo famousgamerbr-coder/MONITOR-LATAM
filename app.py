@@ -40,7 +40,7 @@ with col_botao:
         try:
             token = st.secrets.get("GITHUB_TOKEN")
             if not token:
-                st.error("❌ Erro: O GITHUB_TOKEN não foi encontrado nos Secrets do Streamlit!")
+                st.error("Erro: GITHUB_TOKEN em falta nos Secrets!")
             else:
                 repo = "famousgamerbr-coder/MONITOR-LATAM"
                 url = f"https://api.github.com/repos/{repo}/actions/workflows/atualizar.yml/dispatches"
@@ -54,12 +54,12 @@ with col_botao:
                 response = requests.post(url, headers=headers, json=data)
                 
                 if response.status_code == 204:
-                    st.success("✅ Ordem enviada! O robô está a pesquisar. Aguarde 1 a 2 minutos e recarregue a página.")
+                    # Mensagem flutuante elegante que não estraga o layout
+                    st.toast("✅ Ordem enviada! Aguarde 1 a 2 min e recarregue.", icon="🚀")
                 else:
-                    # Mostra o código de erro exato do GitHub para sabermos o motivo
-                    st.error(f"❌ O GitHub recusou o pedido (Código {response.status_code}): {response.text}")
+                    st.error(f"Erro do GitHub ({response.status_code})")
         except Exception as e:
-            st.error(f"❌ Erro de execução: {e}")
+            st.error(f"Erro: {e}")
 
 # Carregamento dos dados salvos (Garantido após as funções)
 dados = carregar_dados_salvos()
