@@ -136,4 +136,4 @@ with tab_volta:
         st.markdown("**Voo:** `LA3466` | LATAM")
         st.markdown("📍 **Origem:** São Paulo (GRU)")
         st.markdown("🎯 **Destino:** Imperatriz (IMP)")
-        st.markdown("🕝 **Chegada:** 02:35 (já no dia 31/01)")v
+        st.markdown("🕝 **Chegada:** 02:35 (já no dia 31/01)")
