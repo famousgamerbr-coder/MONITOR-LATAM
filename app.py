@@ -39,25 +39,27 @@ with col_botao:
     if st.button("🔄 Atualizar", type="primary"):
         try:
             token = st.secrets.get("GITHUB_TOKEN")
-            repo = "famousgamerbr-coder/MONITOR-LATAM"
-            url = f"https://api.github.com/repos/{repo}/actions/workflows/atualizar.yml/dispatches"
-            
-            headers = {
-                "Authorization": f"Bearer {token}",
-                "Accept": "application/vnd.github+json"
-            }
-            data = {"ref": "main"}
-            
-            response = requests.post(url, headers=headers, json=data)
-            
-            if response.status_code == 204:
-                # É ESTA LINHA QUE MUDA A MENSAGEM:
-                st.success("✅ Ordem enviada! O robô está a pesquisar. Aguarde 1 a 2 minutos e recarregue a página.")
-                st.rerun()
+            if not token:
+                st.error("❌ Erro: O GITHUB_TOKEN não foi encontrado nos Secrets do Streamlit!")
             else:
-                st.error("Erro ao solicitar. Verifique o token nos secrets.")
+                repo = "famousgamerbr-coder/MONITOR-LATAM"
+                url = f"https://api.github.com/repos/{repo}/actions/workflows/atualizar.yml/dispatches"
+                
+                headers = {
+                    "Authorization": f"Bearer {token}",
+                    "Accept": "application/vnd.github+json"
+                }
+                data = {"ref": "main"}
+                
+                response = requests.post(url, headers=headers, json=data)
+                
+                if response.status_code == 204:
+                    st.success("✅ Ordem enviada! O robô está a pesquisar. Aguarde 1 a 2 minutos e recarregue a página.")
+                else:
+                    # Mostra o código de erro exato do GitHub para sabermos o motivo
+                    st.error(f"❌ O GitHub recusou o pedido (Código {response.status_code}): {response.text}")
         except Exception as e:
-            st.error(f"Erro: {e}")
+            st.error(f"❌ Erro de execução: {e}")
 
 # Carregamento dos dados salvos (Garantido após as funções)
 dados = carregar_dados_salvos()
