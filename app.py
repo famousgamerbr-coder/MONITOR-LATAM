@@ -29,6 +29,7 @@ def formatar_dinheiro(valor):
 
 # Layout do Painel
 st.title("🛫 Monitor de Preços - LATAM")
+st.markdown("📅 **Período da Viagem:** 24 a 30 de Janeiro de 2027")
 st.markdown("---")
 
 # Botão de Atualização Manual no topo
@@ -54,7 +55,6 @@ with col_botao:
                 response = requests.post(url, headers=headers, json=data)
                 
                 if response.status_code == 204:
-                    # Mensagem flutuante elegante que não estraga o layout
                     st.toast("✅ Ordem enviada! Aguarde 1 a 2 min e recarregue.", icon="🚀")
                 else:
                     st.error(f"Erro do GitHub ({response.status_code})")
@@ -93,7 +93,7 @@ if preco_anterior_val > 0:
     percentual = (diff / preco_anterior_val) * 100
     delta_str = f"{percentual:+.1f}% vs. anterior"
 
-# Alerta Visual de Super Promoção (abaixo de R$ 2.500,00)
+# Alerta Visual de Super Promoção (abaixo de R$ 1.750,00)
 META_PROMOCAO = 1750.00
 if preco_total > 0 and preco_total <= META_PROMOCAO:
     st.success(f"🔥 SUPER PROMOÇÃO DETECTADA! O preço geral está abaixo de R$ {META_PROMOCAO:,.2f}!".replace(",", "X").replace(".", ",").replace("X", "."))
@@ -116,7 +116,7 @@ with col2:
 st.markdown("---")
 st.metric(label="🕒 Última Atualização / Consulta", value=ultima_atualizacao)
 
-# Histórico de Preços em Tabela (Mais legível no telemóvel)
+# Histórico de Preços em Tabela
 if historico and len(historico) > 0:
     st.markdown("---")
     st.subheader("📈 Histórico de Variação de Preços")
@@ -132,7 +132,7 @@ if historico and len(historico) > 0:
         
         st.dataframe(df_exibir, use_container_width=True, hide_index=True)
 
-# Secção de Detalhes dos Trechos com visual moderno em cartões
+# Secção de Detalhes dos Trechos
 st.markdown("---")
 st.subheader("🗺️ Itinerário dos Voos Monitorados")
 
@@ -169,3 +169,11 @@ with tab_volta:
         st.markdown("📍 **Origem:** São Paulo (GRU)")
         st.markdown("🎯 **Destino:** Imperatriz (IMP)")
         st.markdown("🕝 **Chegada:** 02:35 (já no dia 31/01)")
+
+# Botão direto para ver os voos no site da LATAM
+st.markdown("---")
+st.subheader("🌐 Verificar Diretamente na LATAM")
+st.markdown("Quer pesquisar ou simular a compra diretamente no site oficial da companhia com as datas da viagem?")
+
+url_latam = "https://www.latamairlines.com/br/pt/oferta-voos?origin=IMP&inbound=2027-01-30&outbound=2027-01-24&destination=POA&adt=1&cabin=Economy"
+st.link_button("✈️ Abrir Pesquisa de Voos na LATAM", url_latam, type="secondary", use_container_width=True)
