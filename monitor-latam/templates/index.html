@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Voos - LATAM</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 40px; color: #333; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h1 { color: #002D62; text-align: center; margin-bottom: 25px; font-size: 24px; }
+        .card { background: #f8f9fa; border-left: 5px solid #002D62; padding: 20px; border-radius: 6px; margin-bottom: 20px; }
+        .price-box { text-align: center; background: #e8f4fd; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .price-box h2 { margin: 0; color: #002D62; font-size: 32px; }
+        .info { font-size: 14px; color: #666; text-align: center; margin-top: 15px; }
+        ul { padding-left: 20px; margin: 10px 0; }
+        li { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✈️ Monitor de Passagens LATAM</h1>
+        
+        <div class="card">
+            <strong>Itinerário Monitorado:</strong>
+            <p><strong>IDA (24/01/2027):</strong></p>
+            <ul>
+                {% for v in ida %}
+                    <li>{{ v }}</li>
+                {% endfor %}
+            </ul>
+            <p><strong>VOLTA (30/01/2027):</strong></p>
+            <ul>
+                {% for v in volta %}
+                    {% if loop.last %}
+                        <li>{{ v }} (Chegada em IMP 02:35)</li>
+                    {% else %}
+                        <li>{{ v }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="price-box">
+            <span style="font-size: 14px; color: #555; text-transform: uppercase; font-weight: bold;">Preço Atual Encontrado</span>
+            <h2>{{ preco }}</h2>
+        </div>
+
+        <div class="info">
+            Última verificação: <strong>{{ atualizacao }}</strong>
+        </div>
+    </div>
+</body>
+</html>
