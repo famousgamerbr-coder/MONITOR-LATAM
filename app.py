@@ -100,13 +100,40 @@ if historico and len(historico) > 0:
         
         st.dataframe(df_exibir, use_container_width=True, hide_index=True)
 
+# Secção de Detalhes dos Trechos com visual moderno em cartões
 st.markdown("---")
-st.subheader("Detalhes dos Trechos Monitorados")
+st.subheader("🗺️ Itinerário dos Voos Monitorados")
 
-st.markdown("Ida (Imperatriz ➔ Gramado/POA):")
-st.write("• LA3435 | Imperatriz (IMP) ➔ São Paulo (GRU)")
-st.write("• LA3218 | São Paulo (GRU) ➔ Porto Alegre (POA)")
+tab_ida, tab_volta = st.tabs(["✈️ Voo de Ida (24/01/2027)", "✈️ Voo de Volta (30/01/2027)"])
 
-st.markdown("Volta (Gramado/POA ➔ Imperatriz):")
-st.write("• LA4526 | Porto Alegre (POA) ➔ São Paulo (GRU)")
-st.write("• LA3466 | São Paulo (GRU) ➔ Imperatriz (IMP)")
+with tab_ida:
+    st.markdown("**Rota Completa:** Imperatriz ➔ Gramado/POA")
+    with st.container(border=True):
+        st.markdown("##### 🛫 Trecho 1")
+        st.markdown("**Voo:** `LA3435` | LATAM")
+        st.markdown("📍 **Origem:** Imperatriz (IMP)")
+        st.markdown("🎯 **Destino:** São Paulo (GRU)")
+        st.markdown("🕓 **Saída:** 04:10")
+    
+    with st.container(border=True):
+        st.markdown("##### 🛬 Trecho 2")
+        st.markdown("**Voo:** `LA3218` | LATAM")
+        st.markdown("📍 **Origem:** São Paulo (GRU)")
+        st.markdown("🎯 **Destino:** Porto Alegre / Gramado (POA)")
+        st.markdown("🕙 **Chegada desejada:** Entre 10:00 e 12:15")
+
+with tab_volta:
+    st.markdown("**Rota Completa:** Gramado/POA ➔ Imperatriz")
+    with st.container(border=True):
+        st.markdown("##### 🛫 Trecho 1")
+        st.markdown("**Voo:** `LA4526` | LATAM")
+        st.markdown("📍 **Origem:** Porto Alegre / Gramado (POA)")
+        st.markdown("🎯 **Destino:** São Paulo (GRU)")
+        st.markdown("🕗 **Saída:** 20:05")
+    
+    with st.container(border=True):
+        st.markdown("##### 🛬 Trecho 2")
+        st.markdown("**Voo:** `LA3466` | LATAM")
+        st.markdown("📍 **Origem:** São Paulo (GRU)")
+        st.markdown("🎯 **Destino:** Imperatriz (IMP)")
+        st.markdown("🕝 **Chegada:** 02:35 (já no dia 31/01)")v
