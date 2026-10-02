@@ -3,8 +3,12 @@
     "preco_anterior": 2532.22,
     "preco_ida": 1200.0,
     "preco_volta": 1332.22,
-    "ultima_consulta": "02/10/2026 16:36",
+    "ultima_consulta": "02/10/2026 20:21",
     "historico": [
+        {
+            "data": "02/10/2026 20:21",
+            "preco": 2532.22
+        },
         {
             "data": "02/10/2026 16:36",
             "preco": 2532.22
